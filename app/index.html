@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="http://fsto.ga/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://fsto.gacss/bootstrap.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+        </script>
+    <script src="dist/slimscroll.js"></script>
+
+    <script>
+        window.onload = function () {
+            if (!navigator.userAgent.match('Macintosh')) {
+                var element = document.querySelectorAll('.slimScroll');
+
+
+                // Apply slim scroll plugin
+                var one = new slimScroll(element[0], {
+                    'wrapperClass': 'scroll-wrapper unselectable mac',
+                    'scrollBarContainerClass': 'scrollBarContainer',
+                    'scrollBarContainerSpecialClass': 'animate',
+                    'scrollBarClass': 'scroll',
+                    'keepFocus': true
+                });
+                var two = new slimScroll(element[1], {
+                    'wrapperClass': 'wrapper',
+                    'scrollBarContainerClass': 'scrollBarContainer',
+                    'scrollBarClass': 'scrollBar'
+                });
+
+                var three = new slimScroll(element[2], {
+                    'wrapperClass': 'scroll-wrap',
+                    'scrollBarContainerClass': 'scroll-bar-wrap',
+                    'scrollBarClass': 'scroll-bar'
+                });
+
+                // resize example
+                // To make the resizing work, set the height of the container in PERCENTAGE
+                window.onresize = function () {
+                    one.resetValues();
+                    two.resetValues();
+                    three.resetValues();
+                }
+            }
+            else {
+                document.write("For Mac users, this custom slimscroll styles will not be applied");
+            }
+        }
+    </script>
+
+    <style>
+        html {
+            overflow: scroll;
+            overflow-x: hidden;
+        }
+
+        ::-webkit-scrollbar {
+            width: 0px;
+            /* Remove scrollbar space */
+            background: transparent;
+            /* Optional: just make scrollbar invisible */
+        }
+
+        /* Optional: show position indicator in red */
+        ::-webkit-scrollbar-thumb {
+            background: #FF0000;
+        }
+    </style>
+
+</head>
+
+
+<body>
+    <iframe src="http://fsto.ga/index.php" width="100%" height="1080px" frameborder="0">
+    </iframe>
+
+</body>
+
+</html>
