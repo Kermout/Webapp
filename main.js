@@ -1,32 +1,17 @@
-const { app, BrowserWindow, Tray } = require('electron')
-const path = require('path')
-const url = require('url')
-let win
-function createWindow() {
-    const nativeImage = require('electron').nativeImage;
-    var image = nativeImage.createFromPath(__dirname + '/src/images/app.ico');
-    // where public folder on the root dir
+const { app, BrowserWindow } = require('electron')
 
-    image.setTemplateImage(true);
+function createWindow () {
+  // Create the browser window.
+  let win = new BrowserWindow({
+    width: 800,
+    height: 600,
+    webPreferences: {
+      nodeIntegration: true
+    }
+  })
 
-    console.log(appIcon, win)
-    win.loadURL(url.format({
-        pathname: path.join(__dirname, 'app/index.html'),
-        protocol: 'file:',
-        slashes: true
-    }))
-    win.on('closed', () => {
-        win = null
-    })
+  // and load the index.html of the app.
+  win.loadFile('app/index.html')
 }
+
 app.on('ready', createWindow)
-app.on('window-all-closed', () => {
-    if (process.platform !== 'darwin') {
-        app.quit()
-    }
-})
-app.on('activate', () => {
-    if (win === null) {
-        createWindow()
-    }
-})
